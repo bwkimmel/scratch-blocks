@@ -285,8 +285,10 @@ Blockly.FieldDropdown.prototype.onItemSelected = function(menu, menuItem) {
   }
   // If the value of the menu item is a function, call it and do not select it.
   if (typeof value == 'function') {
-    value();
-    return;
+    value = value();
+    if (value == null) {
+      return;
+    }
   }
   if (value !== null) {
     this.setValue(value);
